@@ -19,6 +19,7 @@ import { ServiceWorkerConfiguration } from '../../configuration';
 import { AssetCachingOptions } from '../asset-caching';
 import { LinkPrefetchOptions } from '../link-prefetch';
 import { OfflinePageOptions } from '../offline-page';
+import { PushSubscriptionOptions } from '../amp-push';
 
 declare global {
   interface WorkerGlobalScope {
@@ -48,6 +49,18 @@ function init(config: ServiceWorkerConfiguration = {}) {
         const assetCachingModule = new AssetCachingAmpModule();
         await assetCachingModule.init(
           config.assetCachingOptions as AssetCachingOptions,
+        );
+      },
+    );
+  }
+
+  if (config.pushSubscriptionOptions) {
+    import(/* webpackChunkName: "optional-modules" */ '../amp-push/index').then(
+      async ({ PushSubscriptionAmpModule }) => {
+        const pushSubscriptionAmpModule = new PushSubscriptionAmpModule();
+        await pushSubscriptionAmpModule.init(
+          config.pushSubscriptionOptions as PushSubscriptionOptions,
+          navRoute,
         );
       },
     );

@@ -18,11 +18,13 @@ import { DocumentCachingOptions } from './modules/document-caching';
 import { AssetCachingOptions } from './modules/asset-caching';
 import { LinkPrefetchOptions } from './modules/link-prefetch';
 import { OfflinePageOptions } from './modules/offline-page';
+import { PushSubscriptionOptions } from './modules/amp-push';
 
 export interface ServiceWorkerConfiguration {
   documentCachingOptions?: DocumentCachingOptions;
   assetCachingOptions?: AssetCachingOptions;
   linkPrefetchOptions?: LinkPrefetchOptions;
   offlinePageOptions?: OfflinePageOptions;
+  pushSubscriptionOptions?: PushSubscriptionOptions;
   mode?: 'local' | 'production';
 }
